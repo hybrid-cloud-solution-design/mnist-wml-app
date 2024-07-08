@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: mnist-wml-app
+spec:
+  path: /
+  to:
+    kind: Service
+    name: mnist-wml-app-service
+  port:
+    targetPort: 8080

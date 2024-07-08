@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mnist-wml-app
+  labels:
+    app: mnist-wml-app
+spec:
+  selector:
+    matchLabels:
+      app: mnist-wml-app
+  template:
+    metadata:
+      annotations:
+        alpha.image.policy.openshift.io/resolve-names: '*'    
+      labels:
+        app: mnist-wml-app
+    spec:
+      containers:
+      - name: mnist-wml-app-container
+        image: mnist-wml-app
+        ports:
+        - containerPort: 8080
+        envFrom:
+          - secretRef:
+              name: mnist-wml-app-secret 

@@ -94,7 +94,7 @@ spec:
           name: openshift-client
         workspaces:
           - name: manifest-dir
-            workspace: workspace
+            workspace: source
   workspaces:
   - name: source
     volumeClaimTemplate:

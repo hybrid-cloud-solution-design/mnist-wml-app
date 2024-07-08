@@ -55,9 +55,23 @@ def image():
     input_data = {"values": image_array.tolist()}
   
     payload_scoring = {"input_data": [input_data]}        
-    mltoken = "xxx"
+
+    # Get the token
+    # https://cpd-cp4d.data-monetization-7978dc60e1e695936f236140cb8874c5-0000.eu-de.containers.appdomain.cloud/icp4d-api/v1/authorize
+    AUTHORIZE_URL = os.getenv('AUTHORIZE_URL')
+    WML_USER = os.getenv('WML_USER')
+    WML_USER_PASSWORD = os.getenv('WML_USER_PASSWORD')
+
+    token_response = requests.post(AUTHORIZE_URL, data={"username": WML_USER, "password": WML_USER_PASSWORD})
+    print(token_response)
+    mltoken = token_response.json()["token"]
+    print(mltoken)
+
+
     # Endpoint URL for making predictions
-    url = 'https://cpd-cp4d.data-monetization-7978dc60e1e695936f236140cb8874c5-0000.eu-de.containers.appdomain.cloud/ml/v4/deployments/3a530846-65e7-4578-8db3-b8f737953e85/predictions?version=2021-05-01'
+    # 
+    MODEL_URL = os.getenv('MODEL_URL')
+    url = MODEL_URL
 
     # Authorization header with mltoken
     headers = {

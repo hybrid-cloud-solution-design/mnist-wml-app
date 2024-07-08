@@ -6,6 +6,7 @@ import requests
 import PIL
 import PIL.ImageOps
 import numpy as np
+import json
 
 
 app = flask.Flask(__name__)
@@ -62,7 +63,10 @@ def image():
     WML_USER = os.getenv('WML_USER')
     WML_USER_PASSWORD = os.getenv('WML_USER_PASSWORD')
 
-    token_response = requests.post(AUTHORIZE_URL, data={"username": WML_USER, "password": WML_USER_PASSWORD}, headers={'Content-Type': 'application/json'})
+    form = {"username": WML_USER, "password": WML_USER_PASSWORD}
+    data_to_send = json.dumps(form).encode("utf-8")
+
+    token_response = requests.post(AUTHORIZE_URL, data=data_to_send, headers={'Content-Type': 'application/json'})
     print(token_response.json())
     mltoken = token_response.json()["token"]
     print(mltoken)

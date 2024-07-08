@@ -62,8 +62,8 @@ def image():
     WML_USER = os.getenv('WML_USER')
     WML_USER_PASSWORD = os.getenv('WML_USER_PASSWORD')
 
-    token_response = requests.post(AUTHORIZE_URL, data={"username": WML_USER, "password": WML_USER_PASSWORD})
-    print(token_response)
+    token_response = requests.post(AUTHORIZE_URL, data={"username": WML_USER, "password": WML_USER_PASSWORD}, headers={'Content-Type': 'application/json'})
+    print(token_response.json())
     mltoken = token_response.json()["token"]
     print(mltoken)
 

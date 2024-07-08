@@ -66,6 +66,7 @@ spec:
         runAfter:
           - fetch-repository
         taskRef:
+          kind: ClusterTask
           name: buildah          
         params:
           - name: IMAGE
@@ -89,6 +90,7 @@ spec:
         runAfter:
           - build
         taskRef:
+          kind: ClusterTask
           name: openshift-client
         workspaces:
           - name: manifest-dir

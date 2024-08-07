@@ -8,8 +8,8 @@ WORKDIR /app
 COPY src/requirements.txt ./
 
 # Install the dependencies
-RUN pip install -U "pip>=19.3.1" && \
-    pip install tensorflow \
+RUN pip install -U "pip==pip-24.1.2" && \
+    pip install tensorflow==2.16.2 \
     pip install --no-cache-dir -r requirements.txt
 
 ## 2. Non-root, arbitrary user IDs

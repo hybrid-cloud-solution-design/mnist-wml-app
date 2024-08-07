@@ -10,7 +10,7 @@ COPY src/requirements.txt ./
 # Install the dependencies
 RUN pip install -U "pip==24.1.2" && \
     pip install tensorflow==2.16.2 \
-    pip install --no-cache-dir -r requirements.txt
+    pip pip-install --no-cache-dir -r requirements.txt
 
 ## 2. Non-root, arbitrary user IDs
 USER 1001

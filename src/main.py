@@ -12,13 +12,14 @@ import json
 app = flask.Flask(__name__)
 
 predict_api_url = os.getenv('PREDICT_API_URL', 'http://localhost:8081/image')
+model_url = os.getenv('MODEL_URL', 'NOT SET')
 
 def log(e):
     print("{0}\n".format(e))
 
 @app.route('/', methods=['GET'])
 def index():
-    return flask.render_template("mnist.html")
+    return flask.render_template("mnist.html", model_url=model_url)
 
 @app.route('/image', methods=['POST'])
 def image():
